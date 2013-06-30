@@ -1,0 +1,120 @@
+#+TITLE:     Vagrant HackerBox
+#+AUTHOR:    Xiao Hanyu
+#+EMAIL:     xiaohanyu1988@gmail.com
+#+DATE:      2013-07-02
+
+* Background
+[[http://www.vagrantup.com/][Vagrant]] is a great tool for creating and configuring lightweight, reproducible,
+portable virtual machine environments. And there're already lots of prebuilt
+[[http://www.vagrantbox.es/][boxes]] for instant use. But these *bare* boxes lack some necessary apps and
+tools, which means you should install and configure lots of things in order to
+have fun working with these bare boxes.
+
+This project provides a simple, integrated way to bake a bare vagrant base box
+into a hackerbox, wait, what defines a hackerbox?
+
+I think a hackerbox should:
+- have vim installed, together with a proper vimrc,
+- have a powerful interactive shell instead of the dumb system built-in shell,
+- have git installed, yeah, no git, no work,
+- have some tiny and convenient tools installed, such as curl, rlwrap, htop,
+  etc.
+
+That's only the basics, since most bare base box contains Python, and I work
+with Python, so I define extra Python standards for my hackerbox:
+- have virtualenv installed,
+- have pip installed, enable pip download cache, set proper pip index-url.
+
+I'm not familiar with Ruby or Perl, so I don't know is there any amazing tools
+for Ruby or Perl. If you have some suggestions, please tell me, if you send me a
+pull request, I will be really appreciated.
+
+The current hackerbox is built on top of ubuntu base box, especially on
+precise(ubuntu 12.04), other linux distribution base box will be supported in
+the near future.
+
+* Quick Start
+You should have the following installed:
+- [[https://www.virtualbox.org][VirtualBox]]
+- [[http://www.vagrantup.com/][Vagrant]] 1.2.x: see [[http://docs.vagrantup.com/v2/installation/index.html][here]] for how to install vagrant.
+- [[https://www.virtualbox.org][Ansible]]: you can get ansible through =pip install ansible=.
+
+Then you should get a base ubuntu box, I recommend precise64:
+#+BEGIN_EXAMPLE
+vagrant box add precise64 --provider virtualbox http://files.vagrantup.com/precise64.box
+#+END_EXAMPLE
+
+Ensure you have the proper network connection, then:
+#+BEGIN_EXAMPLE
+git clone git://github.com/xiaohanyu/vagrant-hackerbox
+cd vagrant-hackerbox
+vagrant up
+#+END_EXAMPLE
+
+Then take a cup of coffee, have a rest, after 5 or 10 minutes, you'll have a
+fully functional hackerbox, hooray!
+
+As mentioned before, the hackerbox is built on top of prebuilt base box, you
+may wonder how. Actually, that's why vagrant is such an amazing tool. The
+hackerbox is built through =vagrant package=, you may refer [[http://docs.vagrantup.com/v2/cli/package.html][here]] for details.
+
+#+BEGIN_EXAMPLE
+vagrant package --output hackerbox_precise64.box
+#+END_EXAMPLE
+
+You can share your box with your friends! And, I share my prebuilt hackerbox
+with you:
+
+#+BEGIN_EXAMPLE
+vagrant box add hackerbox_precise64 --provider virtualbox https://www.dropbox.com/s/uzuc3h5p7tysin2/hackerbox_precise64.box
+mkdir hackerbox
+cd hackerbox
+vagrant init hackerbox_precise64
+vagrant up
+#+END_EXAMPLE
+
+Chinese user can get hackerbox_precise64 [[http://s.yunio.com/7XVxQj][here]]. I didn't find a
+good web storage which provide direct download link, such as dropbox, sorry for that.
+
+* What's in HackerBox
+
+Now let's see what hackerbox provides for you.
+
+First, it contains some ubuntu packages:
+- aptitude
+- [[http://beyondgrep.com/][ack]]: Beyond grep.
+- [[http://byobu.co/][byobu]]: Text-based window manager and terminal multiplexer.
+- [[http://curl.haxx.se/][curl]]: curl groks URLs.
+- [[http://htop.sourceforge.net/][htop]]: An interactive process viewer for Linux.
+- [[http://ranger.nongnu.org/][ranger]]: A vim-inspired filemanager for the console.
+- [[http://freecode.com/projects/rlwrap][rlwrap]]: A readline wrapper.
+- [[http://jonas.nitro.dk/tig/][tig]]: Text-mode interface for git.
+
+For ubuntu's apt, you can provide a custom =sources.list= to boost your apt-get.
+
+The hackerbox replace bash with zsh as the default login shell, and integrate
+the popular community-driven [[https://github.com/robbyrussell/oh-my-zsh][oh-my-zsh]] framework. It also provide some tiny
+shell tools and settings, see [[https://github.com/xiaohanyu/vagrant-hackerbox/blob/master/ubuntu/files/hackerrc][hackerrc]] for details.
+
+The hackerbox provide a handy python 2.x environment, including:
+- [[http://ipython.org/][ipython]]
+- [[http://www.pip-installer.org/en/latest/][pip]] with pip download cache enabled, and a optional pip index-url.
+- [[http://www.virtualenv.org/en/latest/][virtualenv]] and [[http://virtualenvwrapper.readthedocs.org/en/latest/][virtualwrapper]]
+- [[https://github.com/jkbr/httpie][httpie]]: a CLI, cURL-like tool for humans.
+
+For vim, the hackerbox adopt [[https://github.com/amix/vimrc][amix/vimrc]], which is the most popular 'vimrc' in
+github.
+
+Enough stuff! The hackerbox has provided a really convenient and comfortable
+working virtual machine environment, at least for me. Hope you enjoy it!
+
+* Todo
+- Add some other popular linux distribution support, such as Arch, CentOS
+- Reorganize the ansible playbook directory structure.
+
+* References
+- [[https://github.com/jedi4ever/veewee][veewee]]: Easing the building of vagrant boxes.
+- Ansible modules: http://www.ansibleworks.com/docs/modules.html
+- oh-my-zsh ys theme: http://blog.ysmood.org/2013/03/my-ys-terminal-theme/
+- VirtualBox hostonly network: http://www.virtualbox.org/manual/ch06.html#network_hostonly
+- Ubuntu Sources List Generator: http://repogen.simplylinux.ch/

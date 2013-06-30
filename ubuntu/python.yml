@@ -1,0 +1,41 @@
+---
+# This playbook install some goodies for python.
+# Goodies:
+# - ipython
+# - pip
+# - virtualenv
+# - virtualenvwrapper
+# - httpie
+
+- name: install ipython and pip for python2
+  apt: pkg={{item}} state=present
+  with_items:
+    - ipython
+    - python-pip
+
+- name: install virtualenv and virtualenvwrapper through pip
+  pip: name={{item}} state=present
+  with_items:
+    - virtualenv
+    - virtualenvwrapper
+
+- name: make virtualenvwrapper available in bash and zsh
+  sudo: no
+  lineinfile: dest={{item}} regexp="virtualenvwrapper"
+              insertafter=EOF line="source $(which virtualenvwrapper.sh)"
+              state=present backup=yes
+  with_items:
+    - /home/vagrant/.bashrc
+    - /home/vagrant/.zshrc
+
+- name: make pip download cache directory
+  sudo: no
+  file: dest=/home/vagrant/.pip/ state=directory
+
+- name: enable pip cache, set pip index-url
+  sudo: no
+  copy: src=files/pip.conf dest=/home/vagrant/.pip/pip.conf
+
+- name: install httpie
+  sudo: yes
+  pip: name=httpie

@@ -1,0 +1,11 @@
+---
+# Playbook to bake a bare bone ubuntu box to a hacker's box
+
+- hosts: vagrant
+  tasks:
+    - include: apt.yml
+    - include: base.yml
+    - include: zsh.yml
+    - include: python.yml
+    - include: vim.yml
+    - include: clean.yml

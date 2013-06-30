@@ -1,0 +1,14 @@
+---
+# This playbook install some basic ubuntu packages
+
+- name: install some basic ubuntu packages
+  apt: pkg={{item}} state=present
+  with_items:
+    - aptitude
+    - ack-grep
+    - byobu
+    - curl
+    - htop
+    - ranger
+    - rlwrap
+    - tig
