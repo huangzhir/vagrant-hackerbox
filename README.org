@@ -84,8 +84,11 @@ First, it contains some ubuntu packages:
 - aptitude
 - [[http://beyondgrep.com/][ack]]: Beyond grep.
 - [[http://byobu.co/][byobu]]: Text-based window manager and terminal multiplexer.
+- [[http://cloc.sourceforge.net/][cloc]]: Count Lines of Code.
+- [[http://cscope.sourceforge.net/][cscope]]: A developer's tool for browsing source code.
 - [[http://curl.haxx.se/][curl]]: curl groks URLs.
 - [[http://htop.sourceforge.net/][htop]]: An interactive process viewer for Linux.
+- [[http://nmap.org/][nmap]]: Free Security Scanner For Network Exploration & Hacking.
 - [[http://ranger.nongnu.org/][ranger]]: A vim-inspired filemanager for the console.
 - [[http://freecode.com/projects/rlwrap][rlwrap]]: A readline wrapper.
 - [[http://jonas.nitro.dk/tig/][tig]]: Text-mode interface for git.

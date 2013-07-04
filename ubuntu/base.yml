@@ -7,8 +7,11 @@
     - aptitude
     - ack-grep
     - byobu
+    - cloc
+    - cscope
     - curl
     - htop
+    - nmap
     - ranger
     - rlwrap
     - tig
