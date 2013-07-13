@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
   config.vm.provision :ansible do |ansible|
-    ansible.subo = true
+    ansible.sudo = true
     ansible.sudo_user = "root"
     ansible.playbook = "ubuntu/hackbook.yml"
     ansible.inventory_file = "ubuntu/hosts"
