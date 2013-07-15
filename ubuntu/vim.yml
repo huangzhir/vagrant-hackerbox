@@ -11,9 +11,9 @@
 - name: git clone github amix/vimrc
   sudo: no
   git: repo=git://github.com/amix/vimrc.git
-       dest=/home/vagrant/.vim_runtime
+       dest=/home/{{whoami}}/.vim_runtime
        update=no
 
 - name: install awesome amix/vimrc
   sudo: no
-  shell: sh /home/vagrant/.vim_runtime/install_awesome_vimrc.sh
+  shell: sh /home/{{whoami}}/.vim_runtime/install_awesome_vimrc.sh

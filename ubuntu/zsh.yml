@@ -8,16 +8,16 @@
 - name: git clone oh-my-zsh
   sudo: no
   git: repo=git://github.com/robbyrussell/oh-my-zsh.git
-       dest=/home/vagrant/.oh-my-zsh
+       dest=/home/{{whoami}}/.oh-my-zsh
        update=no
 
 - name: install zshrc from oh-my-zsh
   sudo: no
-  command: /bin/cp /home/vagrant/.oh-my-zsh/templates/zshrc.zsh-template /home/vagrant/.zshrc
+  command: /bin/cp /home/{{whoami}}/.oh-my-zsh/templates/zshrc.zsh-template /home/{{whoami}}/.zshrc
 
 - name: set theme for oh-my-zsh
   sudo: no
-  lineinfile: dest=/home/vagrant/.zshrc
+  lineinfile: dest=/home/{{whoami}}/.zshrc
               regexp='ZSH_THEME="robbyrussell"'
               line='ZSH_THEME="ys"'
               state=present
@@ -25,11 +25,11 @@
 
 - name: replace bash with zsh as the default login shell
   sudo: yes
-  shell: chsh -s `which zsh` vagrant
+  shell: chsh -s `which zsh` {{whoami}}
 
 - name: import hackerrc file
   sudo: no
-  copy: src=files/hackerrc dest=/home/vagrant/.hackerrc
+  copy: src=files/hackerrc dest=/home/{{whoami}}/.hackerrc
 
 - name: import some goodies for bash and zsh
   sudo: no
@@ -37,5 +37,5 @@
               insertafter=EOF line="source $HOME/.hackerrc"
               state=present backup=yes
   with_items:
-    - /home/vagrant/.bashrc
-    - /home/vagrant/.zshrc
+    - /home/{{whoami}}/.bashrc
+    - /home/{{whoami}}/.zshrc

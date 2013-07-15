@@ -25,14 +25,14 @@
               insertafter=EOF line="source $(which virtualenvwrapper.sh)"
               state=present backup=yes
   with_items:
-    - /home/vagrant/.bashrc
-    - /home/vagrant/.zshrc
+    - /home/{{whoami}}/.bashrc
+    - /home/{{whoami}}/.zshrc
 
 - name: ensure proper permission of $HOME/.pip
   sudo: yes
-  file: dest=/home/vagrant/.pip
+  file: dest=/home/{{whoami}}/.pip
         state=directory
-        owner=vagrant group=vagrant
+        owner={{whoami}} group={{whoami}}
         recurse=yes
 
 - name: make pip download cache directory
@@ -41,7 +41,7 @@
 
 - name: enable pip cache, set pip index-url
   sudo: no
-  copy: src=files/pip.conf dest=/home/vagrant/.pip/pip.conf
+  copy: src=files/pip.conf dest=/home/{{whoami}}/.pip/pip.conf
 
 - name: install httpie
   sudo: yes

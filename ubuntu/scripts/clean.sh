@@ -33,4 +33,4 @@ dd if=/dev/zero of=/EMPTY bs=1M
 rm -f /EMPTY
 
 # clean pip cache
-rm -rf /home/vagrant/.pip/cache/
+rm -rf /var/cache/pip
