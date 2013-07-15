@@ -12,6 +12,7 @@
     - curl
     - htop
     - nmap
+    - proxychains
     - ranger
     - rlwrap
     - tig
