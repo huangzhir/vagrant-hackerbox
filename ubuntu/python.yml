@@ -28,9 +28,16 @@
     - /home/vagrant/.bashrc
     - /home/vagrant/.zshrc
 
+- name: ensure proper permission of $HOME/.pip
+  sudo: yes
+  file: dest=/home/vagrant/.pip
+        state=directory
+        owner=vagrant group=vagrant
+        recurse=yes
+
 - name: make pip download cache directory
-  sudo: no
-  file: dest=/home/vagrant/.pip/ state=directory
+  sudo: yes
+  file: dest=/var/cache/pip/ state=directory
 
 - name: enable pip cache, set pip index-url
   sudo: no
