@@ -16,3 +16,7 @@
     - ranger
     - rlwrap
     - tig
+
+# (HACK): Some linux distributions didn't provide a default .bashrc.
+- name: ensure $HOME/.bashrc is present
+  command: touch /home/{{whoami}}/.bashrc
