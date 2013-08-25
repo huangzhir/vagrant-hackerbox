@@ -89,6 +89,7 @@ First, it contains some ubuntu packages:
 - [[http://curl.haxx.se/][curl]]: curl groks URLs.
 - [[http://htop.sourceforge.net/][htop]]: An interactive process viewer for Linux.
 - [[http://nmap.org/][nmap]]: Free Security Scanner For Network Exploration & Hacking.
+- [[http://pinfo.sourceforge.net/][pinfo]]: A lynx-style info and man reader.
 - [[https://github.com/haad/proxychains][proxychains]]: a tool that forces any TCP connection made by any given
   application to follow through proxy.
 - [[http://ranger.nongnu.org/][ranger]]: A vim-inspired filemanager for the console.

@@ -4,6 +4,7 @@
 - name: install some basic ubuntu packages
   apt: pkg={{item}} state=present
   with_items:
+    - autoconf
     - aptitude
     - ack-grep
     - byobu
@@ -12,9 +13,11 @@
     - curl
     - htop
     - nmap
+    - pinfo
     - proxychains
     - ranger
     - rlwrap
+    - texinfo
     - tig
 
 # (HACK): Some linux distributions didn't provide a default .bashrc.
