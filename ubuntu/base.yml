@@ -13,6 +13,7 @@
     - curl
     - htop
     - nmap
+    - nmon
     - pinfo
     - proxychains
     - ranger
