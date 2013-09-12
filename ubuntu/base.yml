@@ -12,6 +12,7 @@
     - cscope
     - curl
     - htop
+    - make
     - nmap
     - pinfo
     - proxychains
